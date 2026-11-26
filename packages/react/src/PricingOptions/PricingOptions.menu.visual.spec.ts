@@ -32,3 +32,13 @@ test('PricingOptions / Updated story copy supports German', async ({page}) => {
   await page.locator('body.sb-show-main').waitFor({state: 'visible'})
   await expect(page.getByText(/Kostenlos für verifizierte Studierende/)).toBeVisible()
 })
+
+test('PricingOptions / Custom leading visual story uses the selected French locale', async ({page}) => {
+  await page.goto(
+    'http://localhost:6006/iframe.html?id=components-pricingoptions-features--with-custom-feature-list-item-leading-visual&viewMode=story&globals=locale:fr',
+  )
+  const plan = page.getByTestId('PricingOptions__item').first()
+  await expect(plan.getByRole('link', {name: 'Démarrer un essai gratuit'})).toBeVisible()
+  await expect(plan.getByText(/^Assistance en ligne de commande$/)).toBeVisible()
+  await expect(plan.getByLabel('Inclus').first()).toBeVisible()
+})

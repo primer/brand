@@ -1,4 +1,5 @@
 import React from 'react'
+import {useTranslation} from 'react-i18next'
 import type {Meta, StoryObj} from '@storybook/react'
 
 import {PricingOptions} from '.'
@@ -24,73 +25,86 @@ type Story = StoryObj<typeof PricingOptions>
 
 export const CopilotIndividualPlans: Story = {
   decorators: [decorators],
-  render: () => {
+  render: function CopilotIndividualPlansExample() {
+    const {t} = useTranslation('PricingOptions')
+
     return (
       <PricingOptions variant="default-gradient">
         <PricingOptions.Item>
-          <PricingOptions.Heading>Free</PricingOptions.Heading>
-          <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
+          <PricingOptions.Heading>{t('freePlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('freePlanDescription')}</PricingOptions.Description>
           <PricingOptions.Price>0</PricingOptions.Price>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListItem>50 agent mode or chat requests per month</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>2,000 completions per month</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('monthlyAgentOrChatRequests')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('monthlyCompletions')}
+            </PricingOptions.FeatureListItem>
             <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
               leadingVisual={SparkleFillIcon}
               leadingVisualFill="var(--base-color-scale-purple-5)"
             >
-              Access to Claude 3.5 Sonnet, GPT-4o, and more
+              {t('claudeAndGptAccess')}
             </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
           <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-            Get started
+            {t('getStarted')}
           </PricingOptions.PrimaryAction>
           <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
-            Open in VS Code
+            {t('openInVsCode')}
           </PricingOptions.SecondaryAction>
         </PricingOptions.Item>
         <PricingOptions.Item>
-          <PricingOptions.Heading>Pro</PricingOptions.Heading>
-          <PricingOptions.Label>Most popular</PricingOptions.Label>
-          <PricingOptions.Description>
-            Unlimited completions and chat with access to more models.
-          </PricingOptions.Description>
-          <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+          <PricingOptions.Heading>{t('proPlan')}</PricingOptions.Heading>
+          <PricingOptions.Label>{t('mostPopular')}</PricingOptions.Label>
+          <PricingOptions.Description>{t('unlimitedCompletionsDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
           <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-            Get started
+            {t('getStarted')}
           </PricingOptions.PrimaryAction>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListHeading>Everything in Free and:</PricingOptions.FeatureListHeading>
-            <PricingOptions.FeatureListItem>Unlimited agent mode and chats with GPT-4o</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Unlimited code completions</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Access to code review, Claude 3.7 Sonnet, o1, and more
+            <PricingOptions.FeatureListHeading>{t('everythingInFree')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedGpt4oChats')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              6x more premium requests to use latest models than Free, with the option to buy more1
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedCodeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReviewWithSonnet37')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('sixTimesPremiumRequests')}
             </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
           <PricingOptions.Footnote>
-            Free for verified students, teachers, and maintainers of popular open source projects.{' '}
-            <InlineLink href="#">Learn more</InlineLink>
+            {t('verifiedStudentsFootnote')} <InlineLink href="#">{t('learnMore')}</InlineLink>
           </PricingOptions.Footnote>
         </PricingOptions.Item>
 
         <PricingOptions.Item>
           <PricingOptions.Heading>Pro+</PricingOptions.Heading>
-          <PricingOptions.Description>Maximum flexibility and model choice.</PricingOptions.Description>
-          <PricingOptions.Price trailingText="per month or $390 per year">39</PricingOptions.Price>
+          <PricingOptions.Description>{t('maximumFlexibilityAndModelChoice')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonthOr390PerYear')}>39</PricingOptions.Price>
           <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-            Get started
+            {t('getStarted')}
           </PricingOptions.PrimaryAction>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListHeading>Everything in Pro and:</PricingOptions.FeatureListHeading>
-            <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Access to all models, including GPT-4.5</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              30x more premium requests to use latest models than Free, with the option to buy more1
+            <PricingOptions.FeatureListHeading>{t('everythingInPro')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotIndividualPlus')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Enterprise-grade security, safety, and privacy
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('allModelsIncludingGpt45')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('thirtyTimesPremiumRequests')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
             </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
         </PricingOptions.Item>
@@ -100,45 +114,56 @@ export const CopilotIndividualPlans: Story = {
 }
 export const CopilotBusinessPlans: Story = {
   decorators: [decorators],
-  render: () => {
+  render: function CopilotBusinessPlansExample() {
+    const {t} = useTranslation('PricingOptions')
+
     return (
       <PricingOptions variant="default-gradient">
         <PricingOptions.Item>
           <PricingOptions.Heading>Business</PricingOptions.Heading>
-          <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
-          <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+          <PricingOptions.Description>{t('proPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListItem>Unlimited agent mode and chats with GPT-4o</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Access to code review, Claude 3.5/3.7 Sonnet, o1, and more
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedGpt4oChats')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              300 premium requests to use latest models per user, with the option to buy more1
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReviewWithSonnet35And37')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>User management and usage metrics</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>IP indemnity and data privacy</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('premiumRequestsPerUser')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('userManagementAndUsageMetrics')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnityAndDataPrivacy')}
+            </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
           <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-            Get started
+            {t('getStarted')}
           </PricingOptions.PrimaryAction>
         </PricingOptions.Item>
 
         <PricingOptions.Item>
           <PricingOptions.Heading>Enterprise</PricingOptions.Heading>
-          <PricingOptions.Label>Best value</PricingOptions.Label>
-          <PricingOptions.Description>Scale with AI agents and comprehensive model access.</PricingOptions.Description>
-          <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+          <PricingOptions.Label>{t('bestValue')}</PricingOptions.Label>
+          <PricingOptions.Description>{t('enterpriseAgentsDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
           <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-            Get started
+            {t('getStarted')}
           </PricingOptions.PrimaryAction>
           <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
-            Open in VS Code
+            {t('openInVsCode')}
           </PricingOptions.SecondaryAction>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListHeading>Everything in Business and:</PricingOptions.FeatureListHeading>
-            <PricingOptions.FeatureListItem>Access to all models, including GPT-4.5</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              3.33x more premium requests to use latest models than Business, with the option to buy more1
+            <PricingOptions.FeatureListHeading>{t('everythingInBusiness')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('allModelsIncludingGpt45')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterprisePremiumRequests')}
             </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
         </PricingOptions.Item>
@@ -148,7 +173,9 @@ export const CopilotBusinessPlans: Story = {
 }
 
 export const WithGridLines: Story = {
-  render: () => {
+  render: function WithGridLinesExample() {
+    const {t} = useTranslation('PricingOptions')
+
     return (
       <Box borderBlockStartWidth="thin" borderColor="subtle" borderStyle="solid" marginBlockStart="spacious">
         <Box backgroundColor="default" borderBlockEndWidth="thin" borderColor="subtle" borderStyle="solid">
@@ -156,79 +183,80 @@ export const WithGridLines: Story = {
             <Grid.Column span={12}>
               <PricingOptions hasGridLines style={{marginBlock: 'calc(var(--brand-borderWidth-thin) * -1)'}}>
                 <PricingOptions.Item>
-                  <PricingOptions.Heading>Free</PricingOptions.Heading>
-                  <PricingOptions.Description>
-                    A fast way to get started with GitHub Copilot.
-                  </PricingOptions.Description>
+                  <PricingOptions.Heading>{t('freePlan')}</PricingOptions.Heading>
+                  <PricingOptions.Description>{t('freePlanDescription')}</PricingOptions.Description>
                   <PricingOptions.Price>0</PricingOptions.Price>
                   <PricingOptions.FeatureList>
-                    <PricingOptions.FeatureListItem>
-                      50 agent mode or chat requests per month
+                    <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('monthlyAgentOrChatRequests')}
                     </PricingOptions.FeatureListItem>
-                    <PricingOptions.FeatureListItem>2,000 completions per month</PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('monthlyCompletions')}
+                    </PricingOptions.FeatureListItem>
                     <PricingOptions.FeatureListItem
+                      leadingVisualAriaLabel={t('includes')}
                       leadingVisual={SparkleFillIcon}
                       leadingVisualFill="var(--base-color-scale-purple-5)"
                     >
-                      Access to Claude 3.5 Sonnet, GPT-4o, and more
+                      {t('claudeAndGptAccess')}
                     </PricingOptions.FeatureListItem>
                   </PricingOptions.FeatureList>
                   <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-                    Get started
+                    {t('getStarted')}
                   </PricingOptions.PrimaryAction>
                   <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
-                    Open in VS Code
+                    {t('openInVsCode')}
                   </PricingOptions.SecondaryAction>
                 </PricingOptions.Item>
                 <PricingOptions.Item>
-                  <PricingOptions.Heading>Pro</PricingOptions.Heading>
-                  <PricingOptions.Label>Most popular</PricingOptions.Label>
-                  <PricingOptions.Description>
-                    Unlimited completions and chat with access to more models.
-                  </PricingOptions.Description>
-                  <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+                  <PricingOptions.Heading>{t('proPlan')}</PricingOptions.Heading>
+                  <PricingOptions.Label>{t('mostPopular')}</PricingOptions.Label>
+                  <PricingOptions.Description>{t('unlimitedCompletionsDescription')}</PricingOptions.Description>
+                  <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
                   <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-                    Get started
+                    {t('getStarted')}
                   </PricingOptions.PrimaryAction>
                   <PricingOptions.FeatureList>
-                    <PricingOptions.FeatureListHeading>Everything in Free and:</PricingOptions.FeatureListHeading>
-                    <PricingOptions.FeatureListItem>
-                      Unlimited agent mode and chats with GPT-4o
+                    <PricingOptions.FeatureListHeading>{t('everythingInFree')}</PricingOptions.FeatureListHeading>
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('unlimitedGpt4oChats')}
                     </PricingOptions.FeatureListItem>
-                    <PricingOptions.FeatureListItem>Unlimited code completions</PricingOptions.FeatureListItem>
-                    <PricingOptions.FeatureListItem>
-                      Access to code review, Claude 3.7 Sonnet, o1, and more
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('unlimitedCodeCompletions')}
                     </PricingOptions.FeatureListItem>
-                    <PricingOptions.FeatureListItem>
-                      6x more premium requests to use latest models than Free, with the option to buy more1
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('codeReviewWithSonnet37')}
+                    </PricingOptions.FeatureListItem>
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('sixTimesPremiumRequests')}
                     </PricingOptions.FeatureListItem>
                   </PricingOptions.FeatureList>
                   <PricingOptions.Footnote>
-                    Free for verified students, teachers, and maintainers of popular open source projects.{' '}
-                    <InlineLink href="#">Learn more</InlineLink>
+                    {t('verifiedStudentsFootnote')} <InlineLink href="#">{t('learnMore')}</InlineLink>
                   </PricingOptions.Footnote>
                 </PricingOptions.Item>
 
                 <PricingOptions.Item>
                   <PricingOptions.Heading>Pro+</PricingOptions.Heading>
-                  <PricingOptions.Description>Maximum flexibility and model choice.</PricingOptions.Description>
-                  <PricingOptions.Price trailingText="per month or $390 per year">39</PricingOptions.Price>
+                  <PricingOptions.Description>{t('maximumFlexibilityAndModelChoice')}</PricingOptions.Description>
+                  <PricingOptions.Price trailingText={t('perMonthOr390PerYear')}>39</PricingOptions.Price>
                   <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-                    Get started
+                    {t('getStarted')}
                   </PricingOptions.PrimaryAction>
                   <PricingOptions.FeatureList>
-                    <PricingOptions.FeatureListHeading>Everything in Pro and:</PricingOptions.FeatureListHeading>
-                    <PricingOptions.FeatureListItem>
-                      Everything in Copilot Individual plus:
+                    <PricingOptions.FeatureListHeading>{t('everythingInPro')}</PricingOptions.FeatureListHeading>
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('everythingInCopilotIndividualPlus')}
                     </PricingOptions.FeatureListItem>
-                    <PricingOptions.FeatureListItem>
-                      Access to all models, including GPT-4.5
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('allModelsIncludingGpt45')}
                     </PricingOptions.FeatureListItem>
-                    <PricingOptions.FeatureListItem>
-                      30x more premium requests to use latest models than Free, with the option to buy more1
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('thirtyTimesPremiumRequests')}
                     </PricingOptions.FeatureListItem>
-                    <PricingOptions.FeatureListItem>
-                      Enterprise-grade security, safety, and privacy
+                    <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                      {t('enterpriseGradeSecuritySafetyAndPrivacy')}
                     </PricingOptions.FeatureListItem>
                   </PricingOptions.FeatureList>
                 </PricingOptions.Item>

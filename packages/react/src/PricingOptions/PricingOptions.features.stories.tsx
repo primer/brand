@@ -1,7 +1,7 @@
 import React from 'react'
 import type {Meta, StoryObj} from '@storybook/react'
 import {SparkleFillIcon} from '@primer/octicons-react'
-import {useTranslation} from 'react-i18next'
+import {Trans, useTranslation} from 'react-i18next'
 
 import {PricingOptions} from '.'
 import {ActionMenu, Box, Grid, InlineLink, Stack, Text} from '..'
@@ -27,143 +27,186 @@ export default {
 type Story = StoryObj<typeof PricingOptions>
 
 export const CardsVariant: Story = {
-  render: () => (
-    <PricingOptions variant="cards">
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Free</PricingOptions.Heading>
-        <PricingOptions.Description>
-          For developers looking to get started with GitHub Copilot.
-        </PricingOptions.Description>
-        <PricingOptions.Price>0</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Pro</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function CardsVariantExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions variant="cards">
+        <PricingOptions.Item>
+          <PricingOptions.Heading>{t('freePlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('gettingStartedDescription')}</PricingOptions.Description>
+          <PricingOptions.Price>0</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>{t('proPlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Pro+</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Max</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Pro+</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {t('contactSales')}
+          </PricingOptions.SecondaryAction>
+          <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotIndividualPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Max</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterprisePlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const DefaultGradientVariant: Story = {
-  render: () => (
-    <PricingOptions variant="default-gradient">
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+  render: function DefaultGradientVariantExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions variant="default-gradient">
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
 
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const CardsGradientVariant: Story = {
-  render: () => (
-    <PricingOptions variant="cards-gradient">
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+  render: function CardsGradientVariantExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions variant="cards-gradient">
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
 
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const LeadingComponent: Story = {
-  render: () => {
+  render: function LeadingComponentExample() {
+    const {t} = useTranslation('PricingOptions')
+
     const Image = () => (
       <Box marginBlockEnd={24}>
         <img src={imageExample} alt="Copilot Individual" />
@@ -175,37 +218,52 @@ export const LeadingComponent: Story = {
         <PricingOptions variant="cards">
           <PricingOptions.Item leadingComponent={<Image />}>
             <PricingOptions.Heading>Copilot</PricingOptions.Heading>
-            <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
-            <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+            <PricingOptions.Description>{t('copilotInTheCodingEnvironment')}</PricingOptions.Description>
+            <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
             <PricingOptions.FeatureList>
-              <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-              <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-              <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-              <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+              <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                {t('everythingInCopilotBusinessPlus')}
+              </PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                {t('chatInIdeAndMobile')}
+              </PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                {t('cliAssistance')}
+              </PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                {t('codeCompletions')}
+              </PricingOptions.FeatureListItem>
             </PricingOptions.FeatureList>
             <PricingOptions.PrimaryAction as="a" href="#">
-              Buy now
+              {t('buyNow')}
             </PricingOptions.PrimaryAction>
             <PricingOptions.SecondaryAction as="a" href="#">
-              Contact sales
+              {t('contactSales')}
             </PricingOptions.SecondaryAction>
           </PricingOptions.Item>
           <PricingOptions.Item leadingComponent={<Image />}>
-            <PricingOptions.Label>Recommended</PricingOptions.Label>
+            <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
             <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-            <PricingOptions.Description>
-              Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-              Enterprise Cloud.
-            </PricingOptions.Description>
-            <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+            <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+            <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
             <PricingOptions.FeatureList>
-              <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-              <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-              <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-              <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+              <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                {t('everythingInCopilotBusinessPlus')}
+              </PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                {t('chatInIdeAndMobile')}
+              </PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                {t('cliAssistance')}
+              </PricingOptions.FeatureListItem>
+              <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+                {t('codeCompletions')}
+              </PricingOptions.FeatureListItem>
             </PricingOptions.FeatureList>
             <PricingOptions.PrimaryAction as="a" href="#">
-              Join waitlist
+              {t('joinWaitlist')}
             </PricingOptions.PrimaryAction>
           </PricingOptions.Item>
         </PricingOptions>
@@ -221,73 +279,91 @@ export const ActionsMessage: Story = {
     return (
       <PricingOptions>
         <PricingOptions.Item>
-          <PricingOptions.Heading>Free</PricingOptions.Heading>
-          <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
+          <PricingOptions.Heading>{t('freePlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('freePlanDescription')}</PricingOptions.Description>
           <PricingOptions.Price>0</PricingOptions.Price>
           <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-            Get started
+            {t('getStarted')}
           </PricingOptions.PrimaryAction>
           <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
-            Open in VS Code
+            {t('openInVsCode')}
           </PricingOptions.SecondaryAction>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListItem>50 agent mode or chat requests per month</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>2,000 completions per month</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Access to Haiku 4.5, GPT-5 mini, and more</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Copilot CLI</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('monthlyAgentOrChatRequests')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('monthlyCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('haikuAndGptMiniAccess')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              Copilot CLI
+            </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
         </PricingOptions.Item>
 
         <PricingOptions.Item>
-          <PricingOptions.Label>Most popular</PricingOptions.Label>
-          <PricingOptions.Heading>Pro</PricingOptions.Heading>
-          <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
-          <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
+          <PricingOptions.Label>{t('mostPopular')}</PricingOptions.Label>
+          <PricingOptions.Heading>{t('proPlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('proPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>10</PricingOptions.Price>
           <PricingOptions.ActionsMessage>
             <Text as="p" size="200" variant="muted">
               {t('actionsMessage')} <InlineLink href="#">{t('learnMore')}</InlineLink>
             </Text>
           </PricingOptions.ActionsMessage>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListHeading>Everything in Free and:</PricingOptions.FeatureListHeading>
-            <PricingOptions.FeatureListItem>Copilot cloud agent</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Copilot code review</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Claude and Codex on GitHub and VS Code</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              300 premium requests to use latest models, with the option to buy more1
+            <PricingOptions.FeatureListHeading>{t('everythingInFree')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('copilotCloudAgent')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Unlimited agent mode and chats with GPT-5 mini2
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('copilotCodeReview')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Unlimited inline suggestions</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('claudeAndCodexAccess')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('monthlyPremiumRequests')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedGptMiniChats')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedInlineSuggestions')}
+            </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
         </PricingOptions.Item>
 
         <PricingOptions.Item>
           <PricingOptions.Heading>Pro+</PricingOptions.Heading>
-          <PricingOptions.Description>Scale with agents and more models.</PricingOptions.Description>
-          <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+          <PricingOptions.Description>{t('scaleWithAgentsAndMoreModels')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
           <PricingOptions.ActionsMessage>
             <Text as="p" size="200" variant="muted">
               {t('actionsMessage')} <InlineLink href="#">{t('learnMore')}</InlineLink>
             </Text>
           </PricingOptions.ActionsMessage>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListHeading>Everything in Pro and:</PricingOptions.FeatureListHeading>
-            <PricingOptions.FeatureListItem>
-              Access to all models, including Claude Opus 4.6 and more
+            <PricingOptions.FeatureListHeading>{t('everythingInPro')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('allModelsIncludingOpus')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              5x as many premium requests as Pro to use the latest models, with the option to buy more 1
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('fiveTimesPremiumRequests')}
             </PricingOptions.FeatureListItem>
             <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
               leadingVisual={SparkleFillIcon}
               leadingVisualFill="var(--base-color-scale-purple-3)"
             >
-              Access to GitHub Spark
+              {t('accessToGitHubSpark')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Premium support. <InlineLink href="#">Learn more about Premium Support</InlineLink>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('premiumSupport')} <InlineLink href="#">{t('learnMoreAboutPremiumSupport')}</InlineLink>
             </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
         </PricingOptions.Item>
@@ -303,30 +379,39 @@ export const ActionsMessageWithActions: Story = {
     return (
       <PricingOptions variant="cards">
         <PricingOptions.Item>
-          <PricingOptions.Heading>Free</PricingOptions.Heading>
-          <PricingOptions.Description>A fast way to get started with GitHub Copilot.</PricingOptions.Description>
+          <PricingOptions.Heading>{t('freePlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('freePlanDescription')}</PricingOptions.Description>
           <PricingOptions.Price>0</PricingOptions.Price>
           <PricingOptions.PrimaryAction as="a" href="#" variant="primary">
-            Get started
+            {t('getStarted')}
           </PricingOptions.PrimaryAction>
           <PricingOptions.SecondaryAction as="a" href="#" variant="subtle">
-            Open in VS Code
+            {t('openInVsCode')}
           </PricingOptions.SecondaryAction>
           <PricingOptions.FeatureList hasDivider={false}>
-            <PricingOptions.FeatureListItem>50 agent mode or chat requests per month</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>2,000 completions per month</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Access to Haiku 4.5, GPT-5 mini, and more</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Copilot CLI</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('monthlyAgentOrChatRequests')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('monthlyCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('haikuAndGptMiniAccess')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              Copilot CLI
+            </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
         </PricingOptions.Item>
 
         <PricingOptions.Item>
-          <PricingOptions.Label>Most popular</PricingOptions.Label>
-          <PricingOptions.Heading>Pro</PricingOptions.Heading>
-          <PricingOptions.Description>Accelerate workflows with GitHub Copilot.</PricingOptions.Description>
-          <PricingOptions.Price trailingText="per user / month">10</PricingOptions.Price>
+          <PricingOptions.Label>{t('mostPopular')}</PricingOptions.Label>
+          <PricingOptions.Heading>{t('proPlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('proPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>10</PricingOptions.Price>
           <PricingOptions.PrimaryAction as="button" variant="primary" disabled>
-            Upgrade now
+            {t('upgradeNow')}
           </PricingOptions.PrimaryAction>
           <PricingOptions.ActionsMessage>
             <Text as="p" size="200" variant="muted">
@@ -334,17 +419,25 @@ export const ActionsMessageWithActions: Story = {
             </Text>
           </PricingOptions.ActionsMessage>
           <PricingOptions.FeatureList hasDivider={false}>
-            <PricingOptions.FeatureListHeading>Everything in Free and:</PricingOptions.FeatureListHeading>
-            <PricingOptions.FeatureListItem>Copilot cloud agent</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Copilot code review</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Claude and Codex on GitHub and VS Code</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              300 premium requests to use latest models, with the option to buy more1
+            <PricingOptions.FeatureListHeading>{t('everythingInFree')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('copilotCloudAgent')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Unlimited agent mode and chats with GPT-5 mini2
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('copilotCodeReview')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Unlimited inline suggestions</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('claudeAndCodexAccess')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('monthlyPremiumRequests')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedGptMiniChats')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedInlineSuggestions')}
+            </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
         </PricingOptions.Item>
       </PricingOptions>
@@ -353,438 +446,600 @@ export const ActionsMessageWithActions: Story = {
 }
 
 export const OneOption: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+  render: function OneOptionExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {t('contactSales')}
+          </PricingOptions.SecondaryAction>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const TwoOptions: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot in the coding environment.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
-      </PricingOptions.Item>
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+  render: function TwoOptionsExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot</PricingOptions.Heading>
+          <PricingOptions.Description>{t('copilotInTheCodingEnvironment')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {t('contactSales')}
+          </PricingOptions.SecondaryAction>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const ThreeOptions: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function ThreeOptionsExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {t('contactSales')}
+          </PricingOptions.SecondaryAction>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotIndividualPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const FourOptions: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Free</PricingOptions.Heading>
-        <PricingOptions.Description>
-          For developers looking to get started with GitHub Copilot.
-        </PricingOptions.Description>
-        <PricingOptions.Price>0</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function FourOptionsExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>{t('freePlan')}</PricingOptions.Heading>
+          <PricingOptions.Description>{t('gettingStartedDescription')}</PricingOptions.Description>
+          <PricingOptions.Price>0</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {t('contactSales')}
+          </PricingOptions.SecondaryAction>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotIndividualPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const WithFeatureSets: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListGroupHeading>Base features</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
+  render: function WithFeatureSetsExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{t('baseFeatures')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
 
-          <PricingOptions.FeatureListGroupHeading>Security</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
+            <PricingOptions.FeatureListGroupHeading>{t('security')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
 
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
+          <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
 
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListGroupHeading>Base features</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Everything in Copilot Individual</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {t('contactSales')}
+          </PricingOptions.SecondaryAction>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{t('baseFeatures')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotIndividual')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
 
-          <PricingOptions.FeatureListGroupHeading>Security</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
+            <PricingOptions.FeatureListGroupHeading>{t('security')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListGroupHeading>Base features</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Documentation search and summaries</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Pull request summaries</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code review skills</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListGroupHeading>Security</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{t('baseFeatures')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusiness')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('documentationSearchAndSummaries')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('pullRequestSummaries')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReviewSkills')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListGroupHeading>{t('security')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const WithIncludedAndExcludedFeatures: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem variant="excluded">
-            Debugging and security remediation assistance
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem variant="excluded">
-            Repository-based semantic search
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem variant="excluded">Access your knowledge base</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem variant="excluded">
-            Fine-tuned models (coming soon)
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
+  render: function WithIncludedAndExcludedFeaturesExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{t('chat')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedMessagesInteractionsAndHistory')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('contextAwareCodingSupportAndExplanations')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('excludes')} variant="excluded">
+              {t('debuggingAndSecurityRemediationAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('excludes')} variant="excluded">
+              {t('repositoryBasedSemanticSearch')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('excludes')} variant="excluded">
+              {t('accessYourKnowledgeBase')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListGroupHeading>{t('codeCompletion')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeSuggestionsAsYouType')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('commentsToCode')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('excludes')} variant="excluded">
+              {t('fineTunedModelsComingSoon')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
 
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of <InlineLink href="#">popular open source</InlineLink>{' '}
-          projects.
-        </PricingOptions.Footnote>
+          <PricingOptions.Footnote>
+            <Trans t={t} i18nKey="linkedStudentsFootnote" components={{projects: <InlineLink href="#" />}} />
+          </PricingOptions.Footnote>
 
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem variant="excluded">Access your knowledge base</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem variant="excluded">
-            Fine-tuned models (coming soon)
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {t('contactSales')}
+          </PricingOptions.SecondaryAction>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{t('chat')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedMessagesInteractionsAndHistory')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('contextAwareCodingSupportAndExplanations')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('debuggingAndSecurityRemediationAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('repositoryBasedSemanticSearch')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('excludes')} variant="excluded">
+              {t('accessYourKnowledgeBase')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListGroupHeading>{t('codeCompletion')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeSuggestionsAsYouType')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('commentsToCode')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('excludes')} variant="excluded">
+              {t('fineTunedModelsComingSoon')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Unlimited messages, interactions, and history</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Context-aware coding support and explanations</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Debugging and security remediation assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
-          <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{t('chat')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedMessagesInteractionsAndHistory')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('contextAwareCodingSupportAndExplanations')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('debuggingAndSecurityRemediationAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('repositoryBasedSemanticSearch')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('accessYourKnowledgeBase')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListGroupHeading>{t('codeCompletion')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeSuggestionsAsYouType')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('commentsToCode')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('fineTunedModelsComingSoon')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const WithoutFeatures: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function WithoutFeaturesExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const CenterAligned: Story = {
@@ -795,89 +1050,117 @@ export const CenterAligned: Story = {
       <PricingOptions align="center">
         <PricingOptions.Item>
           <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-          <PricingOptions.Description>
-            Code completions, Chat, and more for indie developers and freelancers.
-          </PricingOptions.Description>
-          <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
-            <PricingOptions.FeatureListItem>
-              Unlimited messages, interactions, and history
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{t('chat')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedMessagesInteractionsAndHistory')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Context-aware coding support and explanations
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('contextAwareCodingSupportAndExplanations')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Debugging and security remediation assistance
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('debuggingAndSecurityRemediationAssistance')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
-            <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('repositoryBasedSemanticSearch')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('accessYourKnowledgeBase')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListGroupHeading>{t('codeCompletion')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeSuggestionsAsYouType')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('commentsToCode')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('fineTunedModelsComingSoon')}
+            </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
           <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
           <PricingOptions.PrimaryAction as="a" href="#">
-            Start a free trial
+            {t('startFreeTrial')}
           </PricingOptions.PrimaryAction>
         </PricingOptions.Item>
 
         <PricingOptions.Item>
-          <PricingOptions.Label>Recommended</PricingOptions.Label>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
           <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-          <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-          <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
-            <PricingOptions.FeatureListItem>
-              Unlimited messages, interactions, and history
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{t('chat')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedMessagesInteractionsAndHistory')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Context-aware coding support and explanations
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('contextAwareCodingSupportAndExplanations')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Debugging and security remediation assistance
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('debuggingAndSecurityRemediationAssistance')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
-            <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('repositoryBasedSemanticSearch')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('accessYourKnowledgeBase')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListGroupHeading>{t('codeCompletion')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeSuggestionsAsYouType')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('commentsToCode')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('fineTunedModelsComingSoon')}
+            </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
           <PricingOptions.PrimaryAction as="a" href="#">
-            Buy now
+            {t('buyNow')}
           </PricingOptions.PrimaryAction>
         </PricingOptions.Item>
 
         <PricingOptions.Item>
           <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-          <PricingOptions.Description>
-            Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-            Enterprise Cloud.
-          </PricingOptions.Description>
-          <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
           <PricingOptions.FeatureList>
-            <PricingOptions.FeatureListGroupHeading>Chat</PricingOptions.FeatureListGroupHeading>
-            <PricingOptions.FeatureListItem>
-              Unlimited messages, interactions, and history
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListGroupHeading>{t('chat')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('unlimitedMessagesInteractionsAndHistory')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Context-aware coding support and explanations
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('contextAwareCodingSupportAndExplanations')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>
-              Debugging and security remediation assistance
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('debuggingAndSecurityRemediationAssistance')}
             </PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Repository-based semantic search</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Access your knowledge base</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListGroupHeading>Code completion</PricingOptions.FeatureListGroupHeading>
-            <PricingOptions.FeatureListItem>Code suggestions as you type</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Comments to code</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>Fine-tuned models (coming soon)</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('repositoryBasedSemanticSearch')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('accessYourKnowledgeBase')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListGroupHeading>{t('codeCompletion')}</PricingOptions.FeatureListGroupHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeSuggestionsAsYouType')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('commentsToCode')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('fineTunedModelsComingSoon')}
+            </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
           <PricingOptions.PrimaryAction as="a" href="#">
-            Join waitlist
+            {t('joinWaitlist')}
           </PricingOptions.PrimaryAction>
         </PricingOptions.Item>
       </PricingOptions>
@@ -886,386 +1169,512 @@ export const CenterAligned: Story = {
 }
 
 export const CollapsedFeatures: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={false}>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function CollapsedFeaturesExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {t('contactSales')}
+          </PricingOptions.SecondaryAction>
 
-        <PricingOptions.FeatureList expanded={false}>
-          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
+          <PricingOptions.FeatureList expanded={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotIndividualPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={false}>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const WithCustomFeatureListHeading: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Base features</PricingOptions.FeatureListHeading>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function WithCustomFeatureListHeadingExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('baseFeatures')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.SecondaryAction as="a" href="#">
-          Contact sales
-        </PricingOptions.SecondaryAction>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.SecondaryAction as="a" href="#">
+            {t('contactSales')}
+          </PricingOptions.SecondaryAction>
 
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Extended features</PricingOptions.FeatureListHeading>
-          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('extendedFeatures')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotIndividualPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListHeading>Enterprise-only features</PricingOptions.FeatureListHeading>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('enterpriseOnlyFeatures')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const WithCustomFeatureListItemLeadingVisual: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            Code completions
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            Chat in IDE and Mobile
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            CLI assistance
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            Security vulnerability filter
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function WithCustomFeatureListItemLeadingVisualExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
 
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            Everything in Copilot Individual plus:
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            Chat in IDE and Mobile
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            CLI assistance
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            Security vulnerability filter
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            Code referencing
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            Public code filter
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            IP indemnity
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem
-            leadingVisual={SparkleFillIcon}
-            leadingVisualFill="var(--base-color-scale-purple-5)"
-          >
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('everythingInCopilotIndividualPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              leadingVisual={SparkleFillIcon}
+              leadingVisualFill="var(--base-color-scale-purple-5)"
+            >
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 export const CollapsedFeaturesNoDividers: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function CollapsedFeaturesNoDividersExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
 
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
+          <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotIndividualPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={false} hasDivider={false}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const ExpandedNarrow: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={{narrow: true, regular: true, wide: true}}>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function ExpandedNarrowExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={{narrow: true, regular: true, wide: true}}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
 
-        <PricingOptions.FeatureList expanded={{narrow: true, regular: true, wide: true}}>
-          <PricingOptions.FeatureListItem>Everything in Copilot Individual plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Public code filter</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
+          <PricingOptions.FeatureList expanded={{narrow: true, regular: true, wide: true}}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotIndividualPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle. Requires GitHub
-          Enterprise Cloud.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={{narrow: true, regular: true, wide: true}}>
-          <PricingOptions.FeatureListItem>Everything in Copilot Business plus:</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterpriseCloudPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={{narrow: true, regular: true, wide: true}}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
   globals: {
     viewport: {value: 'iphonexr'},
   },
@@ -1280,29 +1689,37 @@ export const ExpandedTablet: Story = {
 
 export const HideFeatureListOnNarrowAndRegular: Story = {
   name: 'Hide feature list on all viewports except wide',
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList expanded={{narrow: false, regular: false, wide: true}}>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Chat in IDE and Mobile</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>CLI assistance</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.Footnote>
-          Free for verified students, teachers, and maintainers of popular open source projects.
-        </PricingOptions.Footnote>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+  render: function HideFeatureListOnNarrowAndRegularExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList expanded={{narrow: false, regular: false, wide: true}}>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.Footnote>{t('verifiedStudentsFootnote')}</PricingOptions.Footnote>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 export const HideFeatureListOnNarrowAndRegularNarrow = {
@@ -1314,110 +1731,166 @@ export const HideFeatureListOnNarrowAndRegularNarrow = {
 }
 
 export const WithInfoTooltips: Story = {
-  render: () => (
-    <PricingOptions>
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
-            Chat in IDE and Mobile
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem infoTooltip="Get help directly in your terminal.">
-            CLI assistance
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Security vulnerability filter</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
+  render: function WithInfoTooltipsExample() {
+    const {t} = useTranslation('PricingOptions')
+    return (
+      <PricingOptions>
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
+          <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('chatInIdeAndMobile')})}
+              infoTooltip={t('interactWithCopilotUsingNaturalLanguage')}
+            >
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('cliAssistance')})}
+              infoTooltip={t('getHelpDirectlyInYourTerminal')}
+            >
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('startFreeTrial')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Label>Recommended</PricingOptions.Label>
-        <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
-        <PricingOptions.Description>Copilot personalized to your organization.</PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">19</PricingOptions.Price>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Buy now
-        </PricingOptions.PrimaryAction>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem infoTooltip="Everything from Pro, and more.">
-            Everything in Copilot Individual plus:
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
-            Chat in IDE and Mobile
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem infoTooltip="Get help directly in your terminal.">
-            CLI assistance
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem infoTooltip="Lipsumet dolor consectetuor elit sit amet.">
-            Security vulnerability filter
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code referencing</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem infoTooltip="Filter out suggestions matching public code.">
-            Public code filter
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>IP indemnity</PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>
-            Enterprise-grade security, safety, and privacy
-          </PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-      </PricingOptions.Item>
+        <PricingOptions.Item>
+          <PricingOptions.Label>{t('recommended')}</PricingOptions.Label>
+          <PricingOptions.Heading>Copilot Business</PricingOptions.Heading>
+          <PricingOptions.Description>{t('businessPlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>19</PricingOptions.Price>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('buyNow')}
+          </PricingOptions.PrimaryAction>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('everythingInCopilotIndividualPlus')})}
+              infoTooltip={t('everythingFromProAndMore')}
+            >
+              {t('everythingInCopilotIndividualPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('chatInIdeAndMobile')})}
+              infoTooltip={t('interactWithCopilotUsingNaturalLanguage')}
+            >
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('cliAssistance')})}
+              infoTooltip={t('getHelpDirectlyInYourTerminal')}
+            >
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('securityVulnerabilityFilter')})}
+              infoTooltip="Lipsumet dolor consectetuor elit sit amet."
+            >
+              {t('securityVulnerabilityFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeReferencing')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('publicCodeFilter')})}
+              infoTooltip={t('filterOutSuggestionsMatchingPublicCode')}
+            >
+              {t('publicCodeFilter')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('ipIndemnity')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('enterpriseGradeSecuritySafetyAndPrivacy')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+        </PricingOptions.Item>
 
-      <PricingOptions.Item>
-        <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Copilot personalized to your organization throughout the software development lifecycle.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per user / month">39</PricingOptions.Price>
-        <PricingOptions.FeatureList>
-          <PricingOptions.FeatureListItem infoTooltip="Everything from Pro, and more.">
-            Everything in Copilot Business plus:
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem infoTooltip="Interact with Copilot using natural language.">
-            Chat in IDE and Mobile
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem infoTooltip="Get help directly in your terminal.">
-            CLI assistance
-          </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
-        </PricingOptions.FeatureList>
-        <PricingOptions.PrimaryAction as="a" href="#">
-          Join waitlist
-        </PricingOptions.PrimaryAction>
-      </PricingOptions.Item>
-    </PricingOptions>
-  ),
+        <PricingOptions.Item>
+          <PricingOptions.Heading>Copilot Enterprise</PricingOptions.Heading>
+          <PricingOptions.Description>{t('enterprisePlanDescription')}</PricingOptions.Description>
+          <PricingOptions.Price trailingText={t('perUserMonth')}>39</PricingOptions.Price>
+          <PricingOptions.FeatureList>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('everythingInCopilotBusinessPlus')})}
+              infoTooltip={t('everythingFromProAndMore')}
+            >
+              {t('everythingInCopilotBusinessPlus')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('chatInIdeAndMobile')})}
+              infoTooltip={t('interactWithCopilotUsingNaturalLanguage')}
+            >
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem
+              leadingVisualAriaLabel={t('includes')}
+              infoTooltipAriaLabel={t('featureInfo', {feature: t('cliAssistance')})}
+              infoTooltip={t('getHelpDirectlyInYourTerminal')}
+            >
+              {t('cliAssistance')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+          </PricingOptions.FeatureList>
+          <PricingOptions.PrimaryAction as="a" href="#">
+            {t('joinWaitlist')}
+          </PricingOptions.PrimaryAction>
+        </PricingOptions.Item>
+      </PricingOptions>
+    )
+  },
 }
 
 function PricingOptionsWithCustomTriggerLabel({customContent}: {customContent?: React.ReactNode}) {
+  const {t} = useTranslation('PricingOptions')
+
   return (
     <PricingOptions>
       <PricingOptions.Item>
         <PricingOptions.Heading>Copilot Individual</PricingOptions.Heading>
-        <PricingOptions.Description>
-          Code completions, Chat, and more for indie developers and freelancers.
-        </PricingOptions.Description>
-        <PricingOptions.Price trailingText="per month / $100 per year">10</PricingOptions.Price>
+        <PricingOptions.Description>{t('individualPlanDescription')}</PricingOptions.Description>
+        <PricingOptions.Price trailingText={t('perMonth100PerYear')}>10</PricingOptions.Price>
         <PricingOptions.FeatureList>
+          <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
           <PricingOptions.FeatureListItem
-            infoTooltip="Interact with Copilot using natural language."
-            infoTooltipAriaLabel="More information about Chat in IDE and Mobile"
+            leadingVisualAriaLabel={t('includes')}
+            infoTooltip={t('interactWithCopilotUsingNaturalLanguage')}
+            infoTooltipAriaLabel={t('chatInfoLabel')}
           >
             <>
-              Chat in IDE and Mobile
+              {t('chatInIdeAndMobile')}
               {customContent ? <Text>{customContent}</Text> : null}
             </>
           </PricingOptions.FeatureListItem>
-          <PricingOptions.FeatureListItem>Code completions</PricingOptions.FeatureListItem>
+          <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+            {t('codeCompletions')}
+          </PricingOptions.FeatureListItem>
         </PricingOptions.FeatureList>
         <PricingOptions.PrimaryAction as="a" href="#">
-          Start a free trial
+          {t('startFreeTrial')}
         </PricingOptions.PrimaryAction>
       </PricingOptions.Item>
     </PricingOptions>
@@ -1425,7 +1898,10 @@ function PricingOptionsWithCustomTriggerLabel({customContent}: {customContent?: 
 }
 
 export const WithInfoTooltipsAndCustomTriggerLabel: Story = {
-  render: () => <PricingOptionsWithCustomTriggerLabel customContent="Custom footnote" />,
+  render: function WithInfoTooltipsAndCustomTriggerLabelExample() {
+    const {t} = useTranslation('PricingOptions')
+    return <PricingOptionsWithCustomTriggerLabel customContent={t('customFootnote')} />
+  },
 }
 
 export const WithMenuAction: Story = {
@@ -1454,8 +1930,13 @@ export const WithMenuAction: Story = {
             </ActionMenu>
           </PricingOptions.MenuAction>
           <PricingOptions.FeatureList expanded={false} hasDivider={false}>
-            <PricingOptions.FeatureListItem>{t('codeCompletions')}</PricingOptions.FeatureListItem>
-            <PricingOptions.FeatureListItem>{t('chatInIdeAndMobile')}</PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListHeading>{t('includedHeading')}</PricingOptions.FeatureListHeading>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('codeCompletions')}
+            </PricingOptions.FeatureListItem>
+            <PricingOptions.FeatureListItem leadingVisualAriaLabel={t('includes')}>
+              {t('chatInIdeAndMobile')}
+            </PricingOptions.FeatureListItem>
           </PricingOptions.FeatureList>
         </PricingOptions.Item>
         <PricingOptions.Item>
