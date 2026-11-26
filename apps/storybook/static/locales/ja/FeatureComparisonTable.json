@@ -81,5 +81,10 @@
   "editor_chat_description": "ツールを切り替えずに質問し、コードを理解し、解決策を探れます。",
   "custom_instructions": "カスタム指示",
   "custom_instructions_description": "プロジェクトの規約に合わせて回答を調整します。",
-  "available_models_description": "素早い回答から深い推論まで、タスクに合ったモデルを選べます。"
+  "available_models_description": "素早い回答から深い推論まで、タスクに合ったモデルを選べます。",
+  "collapse_all_features": "すべての機能を折りたたむ",
+  "expand_all_features": "すべての機能を展開",
+  "feature_column": "機能",
+  "show_description": "説明を表示",
+  "hide_description": "説明を非表示"
 }

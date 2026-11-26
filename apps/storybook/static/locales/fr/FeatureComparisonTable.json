@@ -81,5 +81,10 @@
   "editor_chat_description": "Posez des questions, comprenez le code et explorez des solutions sans changer d'outil.",
   "custom_instructions": "Instructions personnalisées",
   "custom_instructions_description": "Adaptez les réponses aux conventions de votre projet.",
-  "available_models_description": "Choisissez un modèle adapté à la tâche, des réponses rapides aux raisonnements approfondis."
+  "available_models_description": "Choisissez un modèle adapté à la tâche, des réponses rapides aux raisonnements approfondis.",
+  "collapse_all_features": "Réduire toutes les fonctionnalités",
+  "expand_all_features": "Développer toutes les fonctionnalités",
+  "feature_column": "Fonctionnalité",
+  "show_description": "Afficher la description",
+  "hide_description": "Masquer la description"
 }

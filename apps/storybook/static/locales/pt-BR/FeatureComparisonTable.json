@@ -81,5 +81,10 @@
   "editor_chat_description": "Faça perguntas, entenda o código e explore soluções sem trocar de ferramenta.",
   "custom_instructions": "Instruções personalizadas",
   "custom_instructions_description": "Adapte as respostas às convenções do seu projeto.",
-  "available_models_description": "Escolha um modelo adequado à tarefa, de respostas rápidas a raciocínios mais aprofundados."
+  "available_models_description": "Escolha um modelo adequado à tarefa, de respostas rápidas a raciocínios mais aprofundados.",
+  "collapse_all_features": "Recolher todos os recursos",
+  "expand_all_features": "Expandir todos os recursos",
+  "feature_column": "Recurso",
+  "show_description": "Mostrar descrição",
+  "hide_description": "Ocultar descrição"
 }

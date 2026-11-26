@@ -1,9 +1,14 @@
-import React, {type PropsWithChildren, useCallback, useState} from 'react'
+import React, {type PropsWithChildren, useCallback} from 'react'
 import {ChevronDownIcon} from '@primer/octicons-react'
 import {clsx} from 'clsx'
 import styles from '../FeatureComparisonTable.module.css'
 import gridlineStyles from '../../component-helpers/shared.module.css'
-import {type FeatureComparisonTableBaseProps, useTableContext, testIds} from '../FeatureComparisonTableContext'
+import {
+  type FeatureComparisonTableBaseProps,
+  TableContext,
+  useTableContext,
+  testIds,
+} from '../FeatureComparisonTableContext'
 import {getChildrenOfType, hasItemLabel} from '../FeatureComparisonTableHelpers'
 import {FeatureComparisonTableGroupHeading} from './FeatureComparisonTableGroupHeading'
 import {FeatureComparisonTableRow} from './FeatureComparisonTableRow'
@@ -20,41 +25,32 @@ export type FeatureComparisonTableGroupProps = PropsWithChildren<
   }
 >
 
-export const FeatureComparisonTableGroup = ({children, className, expanded}: FeatureComparisonTableGroupProps) => {
+export const FeatureComparisonTableGroup = ({children, className}: FeatureComparisonTableGroupProps) => {
+  const context = useTableContext()
   const {
     instanceId,
     breakpoint,
     items,
-    narrowGroupControlsRef,
-    tableGroupControlsRef,
+    narrowControlsRef,
+    tableControlsRef,
     groupIndex: index,
     groupIdentity: identity,
-  } = useTableContext()
+    groupOpen: open,
+    onGroupOpenChange: setOpen,
+  } = context
   const groupChildren = React.Children.toArray(children)
   const heading = getChildrenOfType(groupChildren, FeatureComparisonTableGroupHeading).at(-1)
   const rows = getChildrenOfType(groupChildren, FeatureComparisonTableRow)
-  const signature =
-    typeof expanded === 'boolean'
-      ? String(expanded)
-      : expanded
-      ? `${expanded.narrow}-${expanded.regular}-${expanded.wide}`
-      : 'default'
-  const defaultOpen =
-    typeof expanded === 'boolean' ? expanded : expanded ? expanded[breakpoint] : breakpoint !== 'narrow'
-  const [state, setState] = useState({breakpoint, signature, open: defaultOpen})
-  const open = state.breakpoint === breakpoint && state.signature === signature ? state.open : defaultOpen
-
-  if (state.breakpoint !== breakpoint || state.signature !== signature) {
-    setState({breakpoint, signature, open})
-  }
-
-  const setOpen = (nextOpen: boolean) =>
-    setState(previous => (previous.open === nextOpen ? previous : {...previous, open: nextOpen}))
+  const rowElements = rows.map(row => (
+    <TableContext.Provider key={row.key} value={{...context, rowIdentity: String(row.key)}}>
+      {row}
+    </TableContext.Provider>
+  ))
   const registerTableGroupControl = useCallback(
     (element: HTMLButtonElement | null) => {
-      tableGroupControlsRef.current[identity] = element
+      tableControlsRef.current[identity] = element
     },
-    [identity, tableGroupControlsRef],
+    [identity, tableControlsRef],
   )
   const isWide = breakpoint === 'wide'
   const groupId = `${instanceId}-${isWide ? 'table' : 'narrow'}-group-${index}`
@@ -85,13 +81,13 @@ export const FeatureComparisonTableGroup = ({children, className, expanded}: Fea
           aria-controls={groupId}
           aria-expanded={open}
           ref={control => {
-            narrowGroupControlsRef.current[identity] = control
+            narrowControlsRef.current[identity] = control
           }}
         >
           {heading ?? <FeatureComparisonTableGroupHeading />}
           {chevron}
         </summary>
-        <div id={groupId}>{rows}</div>
+        <div id={groupId}>{rowElements}</div>
       </details>
     )
   }
@@ -142,7 +138,7 @@ export const FeatureComparisonTableGroup = ({children, className, expanded}: Fea
         </tr>
       </tbody>
       <tbody aria-labelledby={groupControlId} className={className} hidden={!open} id={groupId}>
-        {rows}
+        {rowElements}
       </tbody>
     </>
   )

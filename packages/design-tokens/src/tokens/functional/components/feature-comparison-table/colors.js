@@ -48,5 +48,17 @@ module.exports = {
         dark: 'var(--brand-color-canvas-muted)',
       },
     },
+    descriptionIndicator: {
+      bgColor: {
+        rest: {
+          value: 'var(--base-color-scale-gray-0)',
+          dark: 'var(--base-color-scale-gray-7)',
+        },
+        expanded: {
+          value: 'var(--base-color-scale-gray-1)',
+          dark: 'var(--base-color-scale-gray-5)',
+        },
+      },
+    },
   },
 }

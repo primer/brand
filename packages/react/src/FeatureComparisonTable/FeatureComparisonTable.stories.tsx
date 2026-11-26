@@ -34,9 +34,16 @@ type Story = StoryObj<typeof FeatureComparisonTable>
 export const Default: Story = {
   render: function DefaultStory(args) {
     const {t} = useTranslation('FeatureComparisonTable')
+    const labels = {
+      collapseAllGroups: t('collapse_all_features'),
+      expandAllGroups: t('expand_all_features'),
+      featureColumn: t('feature_column'),
+      showDescription: t('show_description'),
+      hideDescription: t('hide_description'),
+    }
 
     return (
-      <FeatureComparisonTable {...args}>
+      <FeatureComparisonTable {...args} labels={{...labels, ...args.labels}}>
         <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
           <FeatureComparisonTable.ItemHeading>{t('Free')}</FeatureComparisonTable.ItemHeading>

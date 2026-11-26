@@ -30,8 +30,15 @@ export type TableContextValue = {
   itemIndex: number
   groupIndex: number
   groupIdentity: string
-  narrowGroupControlsRef: React.RefObject<Record<string, HTMLElement | null>>
-  tableGroupControlsRef: React.RefObject<Record<string, HTMLButtonElement | null>>
+  groupOpen: boolean
+  onGroupOpenChange: (open: boolean) => void
+  rowIdentity: string
+  // Control refs are keyed by stable identities so focus can move between the narrow and wide projections.
+  narrowControlsRef: React.RefObject<Record<string, HTMLElement | null>>
+  tableControlsRef: React.RefObject<Record<string, HTMLElement | null>>
+  rowControlGroupIdentitiesRef: React.RefObject<Record<string, string>>
+  rowDescriptionsOpenRef: React.RefObject<Record<string, boolean>>
+  descriptionToggleLabels: {show: string; hide: string}
 }
 
 export const TableContext = createContext<TableContextValue | undefined>(undefined)

@@ -1,6 +1,7 @@
-import React, {type PropsWithChildren, useEffect} from 'react'
+import React, {type PropsWithChildren, useEffect, useState} from 'react'
 import {clsx} from 'clsx'
 import {Text} from '../../Text'
+import {useId} from '../../hooks/useId'
 import styles from '../FeatureComparisonTable.module.css'
 import {type FeatureComparisonTableBaseProps, useTableContext, testIds} from '../FeatureComparisonTableContext'
 import {getChildrenOfType, hasItemLabel} from '../FeatureComparisonTableHelpers'
@@ -12,7 +13,21 @@ import {FeatureComparisonTableItemHeading} from './FeatureComparisonTableItemHea
 export type FeatureComparisonTableRowProps = PropsWithChildren<FeatureComparisonTableBaseProps<HTMLDivElement>>
 
 export const FeatureComparisonTableRow = ({children, className}: FeatureComparisonTableRowProps) => {
-  const {items, breakpoint} = useTableContext()
+  const {
+    items,
+    breakpoint,
+    groupIdentity,
+    rowIdentity,
+    narrowControlsRef,
+    tableControlsRef,
+    rowControlGroupIdentitiesRef,
+    rowDescriptionsOpenRef,
+    descriptionToggleLabels,
+  } = useTableContext()
+  const descriptionId = useId()
+  const rowKey = `row:${groupIdentity}:${rowIdentity}`
+  // Rows remount when the layout changes, so the open state lives on the root to survive the swap.
+  const [descriptionOpen, setDescriptionOpen] = useState(() => rowDescriptionsOpenRef.current[rowKey] ?? false)
   const rowChildren = React.Children.toArray(children)
   const heading = getChildrenOfType(rowChildren, FeatureComparisonTableRowHeading).at(-1)
   const description = getChildrenOfType(rowChildren, FeatureComparisonTableRowDescription).at(-1)
@@ -30,8 +45,46 @@ export const FeatureComparisonTableRow = ({children, className}: FeatureComparis
   const rowHeading =
     heading && description ? (
       <div className={styles.FeatureComparisonTable__rowHeadingContent}>
-        {heading}
-        {description}
+        <button
+          aria-controls={descriptionId}
+          aria-expanded={descriptionOpen}
+          className={styles.FeatureComparisonTable__descriptionToggle}
+          onClick={() => {
+            rowDescriptionsOpenRef.current[rowKey] = !descriptionOpen
+            setDescriptionOpen(!descriptionOpen)
+          }}
+          ref={element => {
+            if (element) rowControlGroupIdentitiesRef.current[rowKey] = groupIdentity
+            ;(breakpoint === 'wide' ? tableControlsRef : narrowControlsRef).current[rowKey] = element
+          }}
+          type="button"
+        >
+          {heading}
+          <span className="visually-hidden">
+            {descriptionOpen ? descriptionToggleLabels.hide : descriptionToggleLabels.show}
+          </span>
+          <span
+            aria-hidden="true"
+            className={clsx(
+              styles.FeatureComparisonTable__descriptionIcon,
+              descriptionOpen && styles['FeatureComparisonTable__descriptionIcon--expanded'],
+            )}
+          >
+            <svg viewBox="0 0 4 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path
+                d="M0.75 3C0.33579 3 0 3.33579 0 3.75C0 4.16421 0.33579 4.5 0.75 4.5H1V6.5H0.75C0.33579 6.5 0 6.8358 0 7.25C0 7.6642 0.33579 8 0.75 8H2.75C3.16421 8 3.5 7.6642 3.5 7.25C3.5 6.8358 3.16421 6.5 2.75 6.5H2.5V3.75C2.5 3.33579 2.16421 3 1.75 3H0.75Z"
+                fill="currentColor"
+              />
+              <path
+                d="M2.5 1C2.5 1.55228 2.05229 2 1.5 2C0.94772 2 0.5 1.55228 0.5 1C0.5 0.44772 0.94772 0 1.5 0C2.05229 0 2.5 0.44772 2.5 1Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </button>
+        <div hidden={!descriptionOpen} id={descriptionId}>
+          {description}
+        </div>
       </div>
     ) : (
       heading
