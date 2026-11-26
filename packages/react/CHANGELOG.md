@@ -1,5 +1,23 @@
 # @primer/react-brand
 
+## 0.82.0
+
+### Minor Changes
+
+- [#1377](https://github.com/primer/brand/pull/1377) [`1523084`](https://github.com/primer/brand/commit/1523084eb18ea4a7773b8b346585d9ec316c8380) Thanks [@danielguillan](https://github.com/danielguillan)! - Improves `PricingOptions` layouts across desktop, tablet, and mobile:
+
+  - Renders labels inside their corresponding items.
+  - Highlights only items with labels.
+  - Refines borders, dividers, and spacing across pricing layouts.
+  - Adds `hasGridLines` to continue the outer side borders through the label row in gridline layouts.
+  - **Breaking:** `PricingOptions.ActionsMessage` no longer renders a background or border.
+  - **Breaking:** Removes `PricingOptions.testIds.labelRow` because the shared wrapper for all labels no longer exists. Use `PricingOptions.testIds.label` within the corresponding item instead.
+  - **Breaking for `@primer/brand-css` consumers:** Move each label cell inside its corresponding `.PricingOptions__item`. The shared `.PricingOptions__labels` wrapper is no longer rendered.
+
+### Patch Changes
+
+- [#1541](https://github.com/primer/brand/pull/1541) [`c905f88`](https://github.com/primer/brand/commit/c905f88e6c18eb2bc4845432674ef53a04b44752) Thanks [@rezrah](https://github.com/rezrah)! - Updated `CTABanner` content spacing, including increasing the gap between headings and buttons when the description is excluded. Spacing across other combinations have also changed to match revised designs.
+
 ## 0.81.1
 
 ### Patch Changes

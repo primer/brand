@@ -1,5 +1,15 @@
 # @primer/brand-primitives
 
+## 0.82.0
+
+### Minor Changes
+
+- [#1539](https://github.com/primer/brand/pull/1539) [`29c1281`](https://github.com/primer/brand/commit/29c1281857977c09bd69158cac1c3c0ac47164c0) Thanks [@danielguillan](https://github.com/danielguillan)! - Add mode-aware JSON exports for colors, dimensions, and responsive typography.
+
+### Patch Changes
+
+- [#1539](https://github.com/primer/brand/pull/1539) [`29c1281`](https://github.com/primer/brand/commit/29c1281857977c09bd69158cac1c3c0ac47164c0) Thanks [@danielguillan](https://github.com/danielguillan)! - Fix malformed IDE border color and SubNav shadow values.
+
 ## 0.81.1
 
 ### Patch Changes
