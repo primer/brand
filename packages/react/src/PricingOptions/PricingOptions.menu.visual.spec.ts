@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test'
 
-test('PricingOptions / Menu action remains interactive above sibling items', async ({page}) => {
+test('PricingOptions / Open menu remains interactive over the adjacent pricing option', async ({page}) => {
   await page.setViewportSize({width: 390, height: 900})
   await page.goto(
     'http://localhost:6006/iframe.html?args=&id=components-pricingoptions-features--with-menu-action&viewMode=story',
@@ -8,11 +8,27 @@ test('PricingOptions / Menu action remains interactive above sibling items', asy
   )
   await page.locator('body.sb-show-main').waitFor({state: 'visible'})
 
+  // Compact the first option so that the open menu overlaps the next one.
+  await page.addStyleTag({
+    content:
+      '[data-testid="PricingOptions"] { row-gap: 0 } [data-testid="PricingOptions__featureList"] { display: none }',
+  })
+
   const trigger = page.locator('button[aria-haspopup="true"]').first()
   await trigger.click()
   const menu = page.getByRole('menu')
   await expect(menu).toBeVisible()
-  await menu.getByRole('menuitem').last().click()
+  const lastItem = menu.getByRole('menuitem').last()
+  await expect
+    .poll(() =>
+      lastItem.evaluate(item => {
+        const sibling = item.closest('[data-testid="PricingOptions__item"]')?.nextElementSibling
+        const {x, y, width, height} = item.getBoundingClientRect()
+        return sibling && document.elementsFromPoint(x + width / 2, y + height / 2).includes(sibling)
+      }),
+    )
+    .toBe(true)
+  await lastItem.click()
   await expect(page).toHaveURL(/#$/)
 })
 

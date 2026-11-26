@@ -3,7 +3,7 @@
 /* ---------------------------------------------------------- */
 
 .PricingOptions {
-  --brand-pricing-options-item-gap: var(--brand-PricingOptions-items-gap);
+  --brand-PricingOptions-item-gap: var(--brand-PricingOptions-items-gap);
   --brand-pricing-options-container-padding-inline: 0;
   --brand-pricing-options-column-count: 1;
 
@@ -20,13 +20,13 @@
     ;
 
   display: grid;
-  row-gap: var(--brand-pricing-options-item-gap, 0);
+  row-gap: var(--brand-PricingOptions-item-gap, 0);
   padding-inline: var(--brand-pricing-options-container-padding-inline);
 }
 
 @media screen and (max-width: 63.24rem) {
   .PricingOptions {
-    --brand-pricing-options-item-gap: var(--base-size-40);
+    --brand-PricingOptions-item-gap: var(--base-size-40);
     margin-inline: auto;
     max-width: 488px;
   }
@@ -36,7 +36,7 @@
   .PricingOptions {
     grid-template-areas: var(--brand-pricing-options-template-areas);
     grid-template-columns: repeat(var(--brand-pricing-options-column-count), minmax(0, 1fr));
-    column-gap: var(--brand-pricing-options-item-gap, 0);
+    column-gap: var(--brand-PricingOptions-item-gap, 0);
     row-gap: 0;
   }
 
@@ -103,8 +103,8 @@
   /* ---- Default layout labels ---- */
 
   .PricingOptions--layout-default .PricingOptions__label-cell {
-    margin-inline: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
-    padding-inline: calc(var(--brand-pricing-options-item-gap) / 2);
+    margin-inline: calc(var(--brand-PricingOptions-item-gap) / 2 * -1);
+    padding-inline: calc(var(--brand-PricingOptions-item-gap) / 2);
     border-block-end: var(--brand-borderWidth-thin) solid var(--brand-color-border-subtle);
   }
 
@@ -298,6 +298,11 @@
 }
 
 @media (min-width: 63.25rem) {
+  .PricingOptions--layout-default.PricingOptions--has-labels {
+    /* Contain the label background without trapping menus inside individual items. */
+    isolation: isolate;
+  }
+
   .PricingOptions--layout-default .PricingOptions__item {
     --brand-pricing-options-item-padding-inline: 0;
     --brand-pricing-options-item-padding-block-start: var(--base-size-40);
@@ -310,7 +315,7 @@
     content: '';
     position: absolute;
     inset-block: 0;
-    inset-inline: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+    inset-inline: calc(var(--brand-PricingOptions-item-gap) / 2 * -1);
     z-index: -1;
   }
 
@@ -344,7 +349,7 @@
     inset-block: 0;
     width: var(--brand-borderWidth-thin);
     background-color: var(--brand-color-border-subtle);
-    margin-inline-start: calc(var(--brand-pricing-options-item-gap) / 2 * -1);
+    margin-inline-start: calc(var(--brand-PricingOptions-item-gap) / 2 * -1);
   }
 
   /* Start below the label row, unless the divider is the trailing edge of a labeled cell */
@@ -386,7 +391,7 @@
 
 @media (min-width: 48rem) {
   :where(.PricingOptions--layout-cards.PricingOptions--items4) {
-    row-gap: var(--brand-pricing-options-item-gap);
+    row-gap: var(--brand-PricingOptions-item-gap);
   }
 }
 
@@ -401,16 +406,16 @@
   }
 
   .PricingOptions--layout-default.PricingOptions--items2 {
-    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items2-gap);
+    --brand-PricingOptions-item-gap: var(--brand-PricingOptions-items2-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items2-container-padding-inline);
   }
 
   .PricingOptions--layout-default.PricingOptions--items3 {
-    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items3-gap);
+    --brand-PricingOptions-item-gap: var(--brand-PricingOptions-items3-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items3-container-padding-inline);
   }
   .PricingOptions--layout-default.PricingOptions--items4 {
-    --brand-pricing-options-item-gap: var(--brand-PricingOptions-items4-gap);
+    --brand-PricingOptions-item-gap: var(--brand-PricingOptions-items4-gap);
     --brand-pricing-options-container-padding-inline: var(--brand-PricingOptions-items4-container-padding-inline);
   }
 }
@@ -422,11 +427,6 @@
 .PricingOptions__item {
   display: grid;
   grid-template-areas: var(--brand-pricing-options-template-areas);
-  isolation: isolate;
-}
-
-.PricingOptions__item:has(.PricingOptions__menu-action [role='menu']) {
-  z-index: 1;
 }
 
 @media (min-width: 63.25rem) {
@@ -724,8 +724,8 @@
 @media (min-width: 63.25rem) {
   .PricingOptions--layout-default
     :is(.PricingOptions__price, .PricingOptions__feature-list--has-divider, .PricingOptions__footnote)::before {
-    inset-inline-start: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
-    inset-inline-end: calc(var(--brand-pricing-options-item-gap, 0px) / 2 * -1);
+    inset-inline-start: calc(var(--brand-PricingOptions-item-gap, 0px) / 2 * -1);
+    inset-inline-end: calc(var(--brand-PricingOptions-item-gap, 0px) / 2 * -1);
   }
 
   /* First item: don't overflow past container start */
