@@ -1,0 +1,25 @@
+.articleCanvas {
+  box-sizing: border-box;
+  padding: var(--base-size-24);
+}
+
+.article {
+  margin-inline: auto;
+}
+
+.article p.lead {
+  font-size: var(--brand-text-size-600);
+  line-height: var(--brand-text-lineHeight-600);
+  font-weight: var(--brand-heading-weight-600);
+  letter-spacing: var(--brand-heading-letterSpacing-600);
+}
+
+.article table {
+  table-layout: fixed;
+}
+
+@media screen and (min-width: 63.25rem) {
+  .articleCanvas {
+    padding: var(--base-size-60) var(--base-size-60) var(--base-size-80);
+  }
+}

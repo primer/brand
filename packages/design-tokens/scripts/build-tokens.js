@@ -272,7 +272,6 @@ const darkJson = require('../src/tokens/base/colors/dark')
     `tokens/functional/components/logosuite/colors.json`,
     `tokens/functional/components/timeline/colors.json`,
     `tokens/functional/components/video-player/colors.js`,
-    `tokens/functional/components/prose/colors.js`,
     `tokens/functional/components/eyebrow-banner/colors.js`,
     `tokens/functional/components/testimonial/colors.json`,
     `tokens/functional/components/nav-list/colors.js`,

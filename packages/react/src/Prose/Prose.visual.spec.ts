@@ -27,6 +27,28 @@ test.describe('Visual Comparison: Prose', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('Prose / Editorial Article', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-prose-examples--editorial-article&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Prose / Editorial Example Dark', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-prose-examples--editorial-example-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Prose / Full Width', async ({page}) => {
     await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--full-width&viewMode=story', {
       waitUntil: 'networkidle',
@@ -66,6 +88,27 @@ test.describe('Visual Comparison: Prose', () => {
       await expect(page).toHaveScreenshot({fullPage: true})
     })
   })
+  test('Prose / Editorial variant', async ({page}) => {
+    await page.goto('http://localhost:6006/iframe.html?args=&id=components-prose-features--editorial&viewMode=story', {
+      waitUntil: 'networkidle',
+    })
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('Prose / Editorial variant (dark)', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-prose-features--editorial-dark&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('Prose / Unordered List', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-prose-features--unordered-list&viewMode=story',
