@@ -142,6 +142,20 @@ export const RowDescriptions: Story = {
   },
 }
 
+export const ExpandedRowDescription: Story = {
+  ...RowDescriptions,
+  parameters: {axe: {waitForPlay: true}},
+  play: async ({canvasElement}) => {
+    canvasElement.removeAttribute('data-axe-ready')
+    const table = await within(canvasElement).findByTestId(FeatureComparisonTable.testIds.table)
+    const [row] = await within(table).findAllByTestId(FeatureComparisonTable.testIds.row)
+    const toggle = within(row).getByRole('button')
+    await userEvent.click(toggle)
+    await waitFor(() => expect(toggle).toHaveAttribute('aria-expanded', 'true'))
+    canvasElement.setAttribute('data-axe-ready', 'true')
+  },
+}
+
 export const PlanSummaries: Story = {
   render: () => (
     <Box backgroundColor="default" paddingBlockStart="spacious" paddingBlockEnd="spacious">
@@ -186,6 +200,13 @@ export const CollapsedGroups: Story = {
       </Grid>
     </Box>
   ),
+}
+
+export const LocalizedLabels: Story = {
+  ...CollapsedGroups,
+  globals: {
+    locale: 'ja',
+  },
 }
 
 export const ResponsiveGroupExpansion: Story = {
@@ -370,7 +391,15 @@ function FeatureComparisonExample({
   const visiblePlans = plans.slice(0, planCount)
 
   return (
-    <FeatureComparisonTable>
+    <FeatureComparisonTable
+      labels={{
+        collapseAllGroups: t('collapse_all_features'),
+        expandAllGroups: t('expand_all_features'),
+        featureColumn: t('feature_column'),
+        showDescription: t('show_description'),
+        hideDescription: t('hide_description'),
+      }}
+    >
       <FeatureComparisonTable.Heading>{t('compare_features')}</FeatureComparisonTable.Heading>
       {visiblePlans.map((plan, index) => (
         <FeatureComparisonTable.Item key={plan.name}>

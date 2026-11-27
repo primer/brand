@@ -13,6 +13,9 @@ declare const styles: {
   readonly "FeatureComparisonTable__chevron": string;
   readonly "FeatureComparisonTable__chevron--expanded": string;
   readonly "FeatureComparisonTable__description": string;
+  readonly "FeatureComparisonTable__descriptionIcon": string;
+  readonly "FeatureComparisonTable__descriptionIcon--expanded": string;
+  readonly "FeatureComparisonTable__descriptionToggle": string;
   readonly "FeatureComparisonTable__featureColumn": string;
   readonly "FeatureComparisonTable__group": string;
   readonly "FeatureComparisonTable__groupBackground": string;
@@ -50,6 +53,8 @@ declare const styles: {
   readonly "FeatureComparisonTable__tableCell": string;
   readonly "FeatureComparisonTable__tableHeading": string;
   readonly "FeatureComparisonTable__tableHeading--hasLabel": string;
+  readonly "FeatureComparisonTable__tableHeadingContent": string;
+  readonly "FeatureComparisonTable__tableHeadingContent--hasLabel": string;
 };
 export = styles;
 

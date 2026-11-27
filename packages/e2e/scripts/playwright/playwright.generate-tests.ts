@@ -25,6 +25,7 @@ const port = 6006
 const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
 
 const storiesWaitingForPlay = new Set([
+  'components-featurecomparisontable-features--expanded-row-description',
   'components-forms-toggleswitch-features--status-label',
   'components-forms-toggleswitch-features--status-label-narrow',
   'components-forms-toggleswitch-examples--optimistic-update-failure',

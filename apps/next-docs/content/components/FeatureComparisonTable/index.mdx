@@ -64,7 +64,7 @@ import {FeatureComparisonTable} from '@primer/react-brand'
 
 ### Row descriptions
 
-Use `FeatureComparisonTable.RowDescription` to add context beneath a feature name. Descriptions can include links and emphasis.
+Use `FeatureComparisonTable.RowDescription` to add context beneath a feature name. Descriptions are collapsed by default. Descriptions can include links and emphasis.
 
 ```jsx live
 <FeatureComparisonTable>
@@ -93,9 +93,10 @@ Use `FeatureComparisonTable.RowDescription` to add context beneath a feature nam
 
 ### FeatureComparisonTable <Label>Required</Label>
 
-| Name       | Type                                                                                        | Default | required | Description                            |
-| :--------- | :------------------------------------------------------------------------------------------ | :-----: | :------: | :------------------------------------- |
-| `children` | `FeatureComparisonTable.Heading, FeatureComparisonTable.Item, FeatureComparisonTable.Group` |         |  `true`  | Table title, plans, and feature groups |
+| Name       | Type                                                                                                                                 |                                                                                          Default                                                                                           | required | Description                                                                                                                               |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------: | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `children` | `FeatureComparisonTable.Heading, FeatureComparisonTable.Item, FeatureComparisonTable.Group`                                          |                                                                                                                                                                                            |  `true`  | Table title, plans, and feature groups                                                                                                    |
+| `labels`   | `{collapseAllGroups?: string, expandAllGroups?: string, featureColumn?: string, showDescription?: string, hideDescription?: string}` | `{collapseAllGroups: 'Collapse all features', expandAllGroups: 'Expand all features', featureColumn: 'Feature', showDescription: 'Show description', hideDescription: 'Hide description'}` | `false`  | Accessible labels for the group controls, feature column heading, and row description controls. Override them to localize generated text. |
 
 ### FeatureComparisonTable.Item <Label>Required</Label>
 

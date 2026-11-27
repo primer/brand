@@ -81,5 +81,10 @@
   "editor_chat_description": "Ask questions, explain code, and explore solutions without switching tools.",
   "custom_instructions": "Custom instructions",
   "custom_instructions_description": "Tailor responses to your project's conventions.",
-  "available_models_description": "Choose a model that fits the task, from quick answers to deeper reasoning."
+  "available_models_description": "Choose a model that fits the task, from quick answers to deeper reasoning.",
+  "collapse_all_features": "Collapse all features",
+  "expand_all_features": "Expand all features",
+  "feature_column": "Feature",
+  "show_description": "Show description",
+  "hide_description": "Hide description"
 }

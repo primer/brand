@@ -173,9 +173,62 @@ describe('FeatureComparisonTable', () => {
     expect(ref.current).toBe(getByTestId('custom-table'))
   })
 
-  it.each([narrowBreakpoint, wideBreakpoint])('renders rich row descriptions at the %s breakpoint', breakpoint => {
-    setBreakpoint(breakpoint)
-    const {getByTestId} = render(
+  it.each([narrowBreakpoint, wideBreakpoint])(
+    'renders rich row descriptions at the %s breakpoint',
+    async breakpoint => {
+      setBreakpoint(breakpoint)
+      const user = userEvent.setup()
+      const {getByTestId} = render(
+        <FeatureComparisonTable>
+          <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+          <FeatureComparisonTable.Item>
+            <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+          </FeatureComparisonTable.Item>
+          <FeatureComparisonTable.Group expanded>
+            <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
+            <FeatureComparisonTable.Row>
+              <FeatureComparisonTable.RowHeading className="custom-heading">
+                Codespaces
+              </FeatureComparisonTable.RowHeading>
+              <FeatureComparisonTable.RowDescription>Replaced description</FeatureComparisonTable.RowDescription>
+              <FeatureComparisonTable.RowDescription className="custom-description">
+                Develop in <strong>the cloud</strong>. <a href="#codespaces">Learn more</a>
+              </FeatureComparisonTable.RowDescription>
+              <FeatureComparisonTable.Cell variant="included" />
+            </FeatureComparisonTable.Row>
+          </FeatureComparisonTable.Group>
+        </FeatureComparisonTable>,
+      )
+
+      const projection = within(
+        getByTestId(
+          breakpoint === wideBreakpoint ? FeatureComparisonTable.testIds.table : FeatureComparisonTable.testIds.narrow,
+        ),
+      )
+      const heading = projection.getByText('Codespaces')
+      const description = projection.getByText(/Develop in/)
+
+      expect(heading).toHaveClass('custom-heading')
+      expect(description).toHaveClass('custom-description')
+      expect(projection.queryByText('Replaced description')).not.toBeInTheDocument()
+      expect(description).toHaveTextContent('Develop in the cloud. Learn more')
+      const toggle = projection.getByRole('button', {name: /Codespaces/})
+      expect(toggle).toHaveAttribute('aria-expanded', 'false')
+      expect(toggle).toHaveAttribute('aria-controls', description.parentElement!.id)
+      expect(description).not.toBeVisible()
+      await user.click(toggle)
+      expect(toggle).toHaveAttribute('aria-expanded', 'true')
+      expect(description).toBeVisible()
+      expect(within(description).getByRole('link', {name: 'Learn more'})).toHaveAttribute('href', '#codespaces')
+      await user.click(toggle)
+      expect(description).not.toBeVisible()
+    },
+  )
+
+  it('keeps description state with its keyed row when rows are reordered', async () => {
+    setBreakpoint(wideBreakpoint)
+    const user = userEvent.setup()
+    const comparison = (rows: string[]) => (
       <FeatureComparisonTable>
         <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
         <FeatureComparisonTable.Item>
@@ -183,31 +236,23 @@ describe('FeatureComparisonTable', () => {
         </FeatureComparisonTable.Item>
         <FeatureComparisonTable.Group expanded>
           <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
-          <FeatureComparisonTable.Row>
-            <FeatureComparisonTable.RowHeading className="custom-heading">Codespaces</FeatureComparisonTable.RowHeading>
-            <FeatureComparisonTable.RowDescription>Replaced description</FeatureComparisonTable.RowDescription>
-            <FeatureComparisonTable.RowDescription className="custom-description">
-              Develop in <strong>the cloud</strong>. <a href="#codespaces">Learn more</a>
-            </FeatureComparisonTable.RowDescription>
-            <FeatureComparisonTable.Cell variant="included" />
-          </FeatureComparisonTable.Row>
+          {rows.map(name => (
+            <FeatureComparisonTable.Row key={name}>
+              <FeatureComparisonTable.RowHeading>{name}</FeatureComparisonTable.RowHeading>
+              <FeatureComparisonTable.RowDescription>{name} description</FeatureComparisonTable.RowDescription>
+              <FeatureComparisonTable.Cell variant="included" />
+            </FeatureComparisonTable.Row>
+          ))}
         </FeatureComparisonTable.Group>
-      </FeatureComparisonTable>,
+      </FeatureComparisonTable>
     )
+    const {getByRole, rerender} = render(comparison(['Codespaces', 'Actions']))
 
-    const projection = within(
-      getByTestId(
-        breakpoint === wideBreakpoint ? FeatureComparisonTable.testIds.table : FeatureComparisonTable.testIds.narrow,
-      ),
-    )
-    const heading = projection.getByText('Codespaces')
-    const description = projection.getByText(/Develop in/)
+    await user.click(getByRole('button', {name: /Codespaces/}))
+    rerender(comparison(['Actions', 'Codespaces']))
 
-    expect(heading).toHaveClass('custom-heading')
-    expect(description).toHaveClass('custom-description')
-    expect(projection.queryByText('Replaced description')).not.toBeInTheDocument()
-    expect(description).toHaveTextContent('Develop in the cloud. Learn more')
-    expect(within(description).getByRole('link', {name: 'Learn more'})).toHaveAttribute('href', '#codespaces')
+    expect(getByRole('button', {name: /Codespaces/})).toHaveAttribute('aria-expanded', 'true')
+    expect(getByRole('button', {name: /Actions/})).toHaveAttribute('aria-expanded', 'false')
   })
 
   it('uses description-list terms rather than headings for repeated plan names', () => {
@@ -756,8 +801,85 @@ describe('FeatureComparisonTable', () => {
     expect(getByRole('group')).toHaveAttribute('open')
   })
 
+  it.each([
+    [narrowBreakpoint, 'Expand all features', 'Collapse all features'],
+    [wideBreakpoint, 'Collapse all features', 'Expand all features'],
+  ])('toggles all groups at the %s breakpoint', async (breakpoint, initialLabel, toggledLabel) => {
+    setBreakpoint(breakpoint)
+    const user = userEvent.setup()
+    const {getByRole} = render(<Component />)
+    const getGroupControl = () =>
+      breakpoint === wideBreakpoint
+        ? getByRole('button', {name: 'Core features'})
+        : within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement
+    const initialExpanded = getGroupControl()!.getAttribute('aria-expanded')
+
+    await user.click(getByRole('button', {name: initialLabel}))
+    await waitFor(() => expect(getGroupControl()).toHaveAttribute('aria-expanded', String(initialExpanded !== 'true')))
+
+    await user.click(getByRole('button', {name: toggledLabel}))
+    await waitFor(() => expect(getGroupControl()).toHaveAttribute('aria-expanded', initialExpanded))
+    expect(getByRole('button', {name: initialLabel})).toBeInTheDocument()
+  })
+
+  it('uses custom labels for generated controls and headings', async () => {
+    setBreakpoint(wideBreakpoint)
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <FeatureComparisonTable
+        labels={{
+          collapseAllGroups: 'Alle einklappen',
+          expandAllGroups: 'Alle ausklappen',
+          featureColumn: 'Funktion',
+          showDescription: 'Beschreibung anzeigen',
+          hideDescription: 'Beschreibung ausblenden',
+        }}
+      >
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group>
+          <FeatureComparisonTable.GroupHeading>Features</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>Codespaces</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.RowDescription>Develop in the cloud</FeatureComparisonTable.RowDescription>
+            <FeatureComparisonTable.Cell variant="included" />
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
+    )
+
+    expect(getByRole('columnheader', {name: 'Funktion'})).toBeInTheDocument()
+    const descriptionToggle = getByRole('button', {name: 'Codespaces Beschreibung anzeigen'})
+    await user.click(descriptionToggle)
+    expect(getByRole('button', {name: 'Codespaces Beschreibung ausblenden'})).toBeInTheDocument()
+    await user.click(getByRole('button', {name: 'Alle einklappen'}))
+    expect(getByRole('button', {name: 'Alle ausklappen'})).toBeInTheDocument()
+  })
+
+  it('omits the toggle-all button without groups', () => {
+    const {queryByRole} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+        </FeatureComparisonTable.Item>
+      </FeatureComparisonTable>,
+    )
+
+    expect(queryByRole('button', {name: 'Expand all features'})).not.toBeInTheDocument()
+  })
+
   it('moves focus to the corresponding group control when the layout changes', () => {
     const {getByRole} = render(<Component />)
+    getByRole('button', {name: 'Expand all features'}).focus()
+
+    setBreakpoint(wideBreakpoint)
+    expect(getByRole('button', {name: 'Collapse all features'})).toHaveFocus()
+
+    setBreakpoint(narrowBreakpoint)
+    expect(getByRole('button', {name: 'Expand all features'})).toHaveFocus()
+
     const summary = within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement
     summary?.focus()
 
@@ -766,6 +888,33 @@ describe('FeatureComparisonTable', () => {
 
     setBreakpoint(narrowBreakpoint)
     expect(within(getByRole('group')).getByRole('heading', {name: 'Core features'}).parentElement).toHaveFocus()
+  })
+
+  it('keeps row description state and focus when the layout changes', async () => {
+    const user = userEvent.setup()
+    const {getByRole} = render(
+      <FeatureComparisonTable>
+        <FeatureComparisonTable.Heading>Compare features</FeatureComparisonTable.Heading>
+        <FeatureComparisonTable.Item>
+          <FeatureComparisonTable.ItemHeading>Free</FeatureComparisonTable.ItemHeading>
+        </FeatureComparisonTable.Item>
+        <FeatureComparisonTable.Group expanded>
+          <FeatureComparisonTable.GroupHeading>Core features</FeatureComparisonTable.GroupHeading>
+          <FeatureComparisonTable.Row>
+            <FeatureComparisonTable.RowHeading>Codespaces</FeatureComparisonTable.RowHeading>
+            <FeatureComparisonTable.RowDescription>Develop in the cloud</FeatureComparisonTable.RowDescription>
+            <FeatureComparisonTable.Cell variant="included" />
+          </FeatureComparisonTable.Row>
+        </FeatureComparisonTable.Group>
+      </FeatureComparisonTable>,
+    )
+
+    await user.click(getByRole('button', {name: /Codespaces/}))
+    setBreakpoint(wideBreakpoint)
+
+    const toggle = getByRole('button', {name: /Codespaces/})
+    expect(toggle).toHaveFocus()
+    expect(toggle).toHaveAttribute('aria-expanded', 'true')
   })
 
   it('preserves the focused keyed group through wide rerenders, reordering, and layout changes', () => {

@@ -10,13 +10,7 @@ export const FeatureComparisonTableRowHeading = (props: FeatureComparisonTableRo
   const {children, className, id: _id, ...rest}: FeatureComparisonTableRowHeadingProps & {id?: string} = props
 
   return (
-    <Text
-      as="span"
-      size="200"
-      variant="muted"
-      className={clsx(styles.FeatureComparisonTable__rowHeading, className)}
-      {...rest}
-    >
+    <Text as="span" size="200" className={clsx(styles.FeatureComparisonTable__rowHeading, className)} {...rest}>
       {children}
     </Text>
   )

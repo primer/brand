@@ -4,6 +4,7 @@
  * Regenerate using: npm run test:visual:generate
  */
 import {test, expect} from '@playwright/test'
+import {waitForStoryReady} from '../../../e2e/scripts/playwright/wait-for-story-ready'
 
 // eslint-disable-next-line i18n-text/no-en
 test.describe('Visual Comparison: FeatureComparisonTable', () => {
@@ -128,6 +129,17 @@ test.describe('Visual Comparison: FeatureComparisonTable', () => {
     await expect(page).toHaveScreenshot({fullPage: true})
   })
 
+  test('FeatureComparisonTable / Expanded Row Description', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--expanded-row-description&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await waitForStoryReady(page, 'components-featurecomparisontable-features--expanded-row-description')
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
   test('FeatureComparisonTable / Plan Summaries', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--plan-summaries&viewMode=story',
@@ -171,6 +183,17 @@ test.describe('Visual Comparison: FeatureComparisonTable', () => {
   test('FeatureComparisonTable / Collapsed Groups', async ({page}) => {
     await page.goto(
       'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--collapsed-groups&viewMode=story',
+      {waitUntil: 'networkidle'},
+    )
+    await page.locator('body.sb-show-main').waitFor({state: 'visible'})
+
+    await page.waitForTimeout(500)
+    await expect(page).toHaveScreenshot({fullPage: true})
+  })
+
+  test('FeatureComparisonTable / Localized Labels', async ({page}) => {
+    await page.goto(
+      'http://localhost:6006/iframe.html?args=&id=components-featurecomparisontable-features--localized-labels&viewMode=story',
       {waitUntil: 'networkidle'},
     )
     await page.locator('body.sb-show-main').waitFor({state: 'visible'})
