@@ -2,6 +2,7 @@ import React from 'react'
 import {fireEvent, render, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
+import '../test-utils/mocks/match-media-mock'
 import {axe, toHaveNoViolations} from 'jest-axe'
 
 import {MediaPlaylist, type MediaPlaylistProps} from '../'
