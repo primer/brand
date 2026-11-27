@@ -25,6 +25,7 @@ const port = 6006
 const defaultTimeout = 500 // Storybook 7 introduced a small delay in loading stories. This is to migigate the spinner showing up in screenshots.
 
 const storiesWaitingForPlay = new Set([
+  'components-anchornav-features--overflow-menu-open',
   'components-forms-toggleswitch-features--status-label',
   'components-forms-toggleswitch-features--status-label-narrow',
   'components-forms-toggleswitch-examples--optimistic-update-failure',
@@ -59,12 +60,15 @@ const waitForTimeoutLookup = {
   'components-button-features--subtle-with-hover-interaction': 2000, // for the interaction test
   'components-anchornav--playground': 2000, // for the animation
   'components-anchornav-features--fewer-anchor-links': 2000, // for the animation
-  'components-anchornav-features--custom-background': 2000, // for the animation
   'components-anchornav-features--shorter-labels': 2000, // for the animation
+  'components-anchornav-features--without-action': 2000, // for the animation
+  'components-anchornav-features--maximum-links': 2000, // for the animation
+  'components-anchornav-features--overflow-menu': 2000, // wait for responsive overflow measurement
   'components-anchornav-features--narrow-view': 2000, // for the interaction test
   'components-anchornav-features--narrow-view-menu-open': 2000, // for the interaction test
-  'components-anchornav-features--regular-view': 2000, // for the interaction test
-  'components-anchornav-features--regular-view-menu-open': 2000, // for the interaction test
+  'components-anchornav-features--narrow-view-maximum-links-menu-open': 2000, // for the interaction test
+  'components-anchornav-features--narrow-view-action-folded': 2000, // wait for the action measurement
+  'components-anchornav-features--regular-view': 2000, // wait for responsive overflow measurement
   'components-anchornav-features--longer-labels': 2000, // for the animation
   'components-minimalfooter--default': 5000, // for external social imagery to load
   'components-minimalfooter--playground': 5000, // for external social imagery to load
@@ -146,6 +150,8 @@ const waitForTimeoutLookup = {
  * Only add tests here that aren't suitable for visual regression testing
  */
 const skipTestLookup = [
+  'components-anchornav-features--maximum-links-localized-tablet', // localized stories are checked interactively, not with snapshots
+  'components-anchornav-features--regular-view-overflow-menu-localized', // localized stories are checked interactively, not with snapshots
   'components-iconbutton-features--long-delayed-tooltip', // delayed hover timing is covered by the interaction test
   'components-river--video', // video makes this too flakey
   'components-river--custom-logos', // for external social imagery to load
